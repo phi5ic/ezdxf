@@ -633,9 +633,11 @@ class Matrix44:
         # This version is 3.4x faster than the Cython version of Matrix44.fast_2d_transform()
         # for larger point arrays but 10.5x slower than the Cython version of this method.
         if ndim == 2:
-            m = np.array(self.get_2d_transformation(), dtype=np.float64).reshape(3, 3)
+            m = np.array(self.get_2d_transformation(), dtype=np.float64)
+            m = m.reshape(3, 3)
         elif ndim == 3:
-            m = np.array(self._matrix, dtype=np.float64).reshape(4, 4)
+            m = np.array(self._matrix, dtype=np.float64)
+            m = m.reshape(4, 4)
         else:
             raise ValueError("ndim has to be 2 or 3")
 
